@@ -37,12 +37,11 @@ source ~/ros2_ws/install/setup.bash
 export TURTLEBOT3_MODEL=waffle
 ```
 
-**الإثبات:**
 
-![بناء مساحة العمل](1-workspace-build.png)
+![بناء مساحة العمل](installing.png)
 *عملية بناء الحزم باستخدام colcon build*
 
-![تفعيل البيئة](2-workspace-source.png)
+![تفعيل البيئة](done_Install_Dependent_ROS2_Packages.png)
 *تفعيل مساحة العمل وإعدادات ROS 2*
 
 ---
@@ -57,7 +56,7 @@ export TURTLEBOT3_MODEL=waffle
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 ```
 
-![بيئة Gazebo](3-gazebo-world.png)
+![بيئة Gazebo](6.2.1.png)
 *بيئة المحاكاة في Gazebo مع TurtleBot3*
 
 #### ب) تشغيل عقدة SLAM (Cartographer)
@@ -66,7 +65,7 @@ ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True
 ```
 
-![RViz SLAM](4-rviz-slam.png)
+![RViz SLAM](6.2.2.png)
 *واجهة RViz أثناء عملية رسم الخريطة*
 
 #### ج) التحكم بالروبوت (Teleoperation)
@@ -75,7 +74,7 @@ ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True
 ros2 run turtlebot3_teleop teleop_keyboard
 ```
 
-![التحكم بالروبوت](5-teleop-keyboard.png)
+![التحكم بالروبوت](6.2.3.png)
 *واجهة التحكم بحركة الروبوت عبر لوحة المفاتيح*
 
 تم تحريك الروبوت في جميع أنحاء البيئة لاستكشاف المساحة بالكامل وبناء خريطة دقيقة.
@@ -90,14 +89,14 @@ ros2 run turtlebot3_teleop teleop_keyboard
 ros2 run nav2_map_server map_saver_cli -f ~/my_map
 ```
 
-![حفظ الخريطة](6-map-saved.png)
+![حفظ الخريطة](6.2.4.png)
 *تأكيد حفظ الخريطة بنجاح*
 
 تم إنشاء ملفين:
 - `my_map.pgm` - صورة الخريطة
 - `my_map.yaml` - معلومات الخريطة (دقة، أصل، عتبات)
 
-![الخريطة النهائية](my_map.png)
+![الخريطة النهائية](map.pgm)
 *الخريطة النهائية للبيئة*
 
 ---
@@ -109,9 +108,6 @@ ros2 run nav2_map_server map_saver_cli -f ~/my_map
 ```bash
 ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=$HOME/my_map.yaml
 ```
-
-![نظام الملاحة](7-navigation-launched.png)
-*تشغيل نظام الملاحة في RViz*
 
 الآن يمكن للروبوت التنقل بشكل مستقل إلى أي نقطة على الخريطة باستخدام أداة "2D Goal Pose" في RViz.
 
